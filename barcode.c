@@ -5,7 +5,7 @@
 int is_valid_barcode(int barcode[13]) {
     int odd_sum = 0, even_sum = 0;
 
-    // È¦¼ö ¹× Â¦¼ö ÀÚ¸® ÇÕ °è»ê
+    // í™€ìˆ˜ ë° ì§ìˆ˜ ìë¦¬ í•© ê³„ì‚°
     for (int i = 0; i < 12; i++) {
         if (i % 2 == 0) {
             odd_sum += barcode[i];
@@ -15,37 +15,37 @@ int is_valid_barcode(int barcode[13]) {
         }
     }
 
-    even_sum *= 3; // Â¦¼ö ÀÚ¸® ÇÕÀ» 3¹è
-    int total_sum = odd_sum + even_sum + barcode[12]; // ÃÑÇÕ¿¡ °ËÁõ ¼ıÀÚ ´õÇÔ
+    even_sum *= 3; // ì§ìˆ˜ ìë¦¬ í•©ì„ 3ë°°
+    int total_sum = odd_sum + even_sum + barcode[12]; // ì´í•©ì— ê²€ì¦ ìˆ«ì ë”í•¨
 
-    // ÃÑÇÕÀÌ 10ÀÇ ¹è¼öÀÌ¸é À¯È¿
+    // ì´í•©ì´ 10ì˜ ë°°ìˆ˜ì´ë©´ ìœ íš¨
     return (total_sum % 10 == 0);
 }
 
 int main() {
-    char barcode_str[14];  // 13ÀÚ¸® ¼ıÀÚ + null Á¾·á
+    char barcode_str[14];  // 13ìë¦¬ ìˆ«ì + null ì¢…ë£Œ
     int barcode[13];
 
-    printf("13ÀÚ¸® ¹ÙÄÚµå¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+    printf("13ìë¦¬ ë°”ì½”ë“œë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
 
-    // 13ÀÚ¸® ¼ıÀÚ¸¦ ¹®ÀÚ¿­·Î ¹ŞÀ½ (fscanf_s´Â ¾ÈÀüÇÑ ÀÔ·ÂÀ» º¸Àå)
+    // 13ìë¦¬ ìˆ«ìë¥¼ ë¬¸ìì—´ë¡œ ë°›ìŒ
     fscanf_s(stdin, "%13s", barcode_str, (unsigned)sizeof(barcode_str));    
 
-    // ¹®ÀÚ¿­À» Á¤¼ö ¹è¿­·Î º¯È¯
+    // ë¬¸ìì—´ì„ ì •ìˆ˜ ë°°ì—´ë¡œ ë³€í™˜
     for (int i = 0; i < 13; i++) {
         if (!isdigit(barcode_str[i])) {
-            printf("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä.\n");
+            printf("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ìˆ«ìë§Œ ì…ë ¥í•˜ì„¸ìš”.\n");
             return 1;
         }
-        barcode[i] = barcode_str[i] - '0';  // ¹®ÀÚÇü ¼ıÀÚ¸¦ Á¤¼ö·Î º¯È¯
+        barcode[i] = barcode_str[i] - '0';  // ë¬¸ìí˜• ìˆ«ìë¥¼ ì •ìˆ˜ë¡œ ë³€í™˜
     }
 
-    // ¹ÙÄÚµå À¯È¿¼º °Ë»ç
+    // ë°”ì½”ë“œ ìœ íš¨ì„± ê²€ì‚¬
     if (is_valid_barcode(barcode)) {
-        printf("À¯È¿ÇÑ ¹ÙÄÚµåÀÔ´Ï´Ù.\n");
+        printf("ìœ íš¨í•œ ë°”ì½”ë“œì…ë‹ˆë‹¤.\n");
     }
     else {
-        printf("À¯È¿ÇÏÁö ¾ÊÀº ¹ÙÄÚµåÀÔ´Ï´Ù.\n");
+        printf("ìœ íš¨í•˜ì§€ ì•Šì€ ë°”ì½”ë“œì…ë‹ˆë‹¤.\n");
     }
 
     return 0;
